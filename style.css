@@ -1,0 +1,16 @@
+#container {
+    font-size: 1em;
+}
+#pokemonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: white;
+}
+.pokmone {
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+html {
+    background-color: black;
+}
