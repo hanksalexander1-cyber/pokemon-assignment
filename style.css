@@ -9,8 +9,31 @@
 }
 .pokmone {
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #ff0095;
 }
 html {
     background-color: black;
+}
+
+ul {
+    display: flex;
+    justify-content: flex-start;
+    width: 120px;
+}
+h3 {
+    text-align: center;
+    
+}
+.pokmone {
+    background-color: rgba(255, 157, 157, 0.26);
+}
+img{
+    justify-content: center;
+    display: block;
+    margin: 0 auto;
+    /* FUCK YOU */
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black; /* i don*/
+    border-radius: 10000000000009009000909008798899000em;
+    
 }
