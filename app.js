@@ -1,24 +1,28 @@
 let pokeymone = 0
 let typers = []
-document.getElementById("pokemonContainer").innerHTML = ""
+document.getElementById("pokeamonContainer").innerHTML = ""
 
-
-for(let i = 0; i < 300; i++){
-fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then((response) =>response.json())
-
-.then((data) => {
-    typers = []
-    for (let type in data.types ){
-        typers.push(` ${data.types[type].type.name}`)
+async function getAllPokemon () {
+    document.getElementById("errorCatch").style.display = "none";
+    document.getElementById("pokeamonContainer").innerHTML = "";
+    for(let i = 0; i <= 12; i++){
+    setTimeout(async () => {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+        const data = await response.json();
+        typers = []
+        for (let type in data.types ){
+            typers.push(` ${data.types[type].type.name}`)
+        }
+        makePokemon(data)
+        pokeymone ++;
+    }, i *  100);
     }
-    makePokemon(data)
-    pokeymone ++;
-})
+
 }
 
 function makePokemon(makePoke) {
 
-    document.getElementById("pokemonContainer").innerHTML += getElement(makePoke)
+    document.getElementById("pokeamonContainer").innerHTML += getElement(makePoke)
     
 
 }
@@ -29,10 +33,35 @@ function getElement(data) {
     <h3>${(data.name).toUpperCase()}</h3>
         <p>#${data.id}</p>
         <img src="${data.sprites.front_default}" alt="">
-        <ul>${typers}</ul>
-        <ul>${data.stats[0].stat.name}: ${data.stats[0].base_stat}</ul>
-        <ul>${data.stats[1].stat.name}: ${data.stats[1].base_stat}</ul>
-        <ul>${data.stats[2].stat.name}: ${data.stats[2].base_stat}</ul
+        <ul style = "background-color: purple;">${typers}</ul>
+        <ul style="background-color: red;">${data.stats[0].stat.name}: ${data.stats[0].base_stat}</ul>
+        <ul style="background-color: darkblue;">${data.stats[1].stat.name}: ${data.stats[1].base_stat}</ul>
+        <ul style="background-color: green;">${data.stats[2].stat.name}: ${data.stats[2].base_stat}</ul>
     </div>`
 }
 
+async function searchPokemon(name) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    if (!response.ok) {
+        document.getElementById("errorCatch").style.display = "block";
+        throw new Error ("pokemon not found")
+    }
+    document.getElementById("errorCatch").style.display = "none";
+    const data = await response.json();
+    typers = []
+    for (let type in data.types ){
+        typers.push(` ${data.types[type].type.name}`)
+    }
+    makePokemon(data)
+    pokemone ++;
+    
+}
+
+document.getElementById("search").addEventListener("click", () => {
+    const name = document.getElementById("name").value
+    document.getElementById("pokeamonContainer").innerHTML = "";
+    searchPokemon(name)  
+})
+document.getElementById("getAll").addEventListener("click", () => {
+    getAllPokemon()
+})
