@@ -62,3 +62,40 @@ document.getElementById("search").addEventListener("click", () => {
 document.getElementById("getAll").addEventListener("click", () => {
     getAllPokemon()
 })
+
+console.log(pokemon.name);
+console.log(pokemon.maxHealth);
+
+pokemon.takeDamage(20);
+console.log(pokemon.health);
+
+pokemon.heal(10);
+console.log(pokemon.health);
+
+pokemon.resetHealth();
+console.log(pokemon.health);
+
+console.log(pokemon.isFainted);
+
+console.log(Pokemon.getTotalCreated());
+
+pokemon.takeDamage(999);
+console.log(pokemon.health);
+
+pokemon.heal(999);
+console.log(pokemon.health);
+
+pokemon.health = 50;
+console.log(pokemon.health);
+
+pokemon.health = -20;
+console.log(pokemon.health);
+
+pokemon.health = 999;
+console.log(pokemon.health);
+
+pokemon.takeDamage(-5);
+console.log(pokemon.health);
+
+pokemon.heal(-5);
+console.log(pokemon.health);
